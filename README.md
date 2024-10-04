@@ -20,72 +20,98 @@ For research collaboration or if you'd like to contribute to the project, we enc
 
 ## **Part 1: Running the Project on Your Local Machine**
 
-### **Prerequisites**
-Before running the project on your local machine, ensure you have the following tools and libraries installed:
+### **Requirements**
+To run this project locally, you will need the following:
 
-1. **Python 3.8+**
-   - You can download Python from the official [Python website](https://www.python.org/downloads/).
+- Python 3.8+
+- PIP (Python package installer)
+- Ultralytics YOLO library
+- CUDA (optional, for GPU acceleration)
+- PyTorch (for deep learning training)
 
-2. **Conda (Recommended)**
-   - Conda is a package and environment manager. Download and install Conda from the official [Miniconda or Anaconda page](https://docs.conda.io/en/latest/miniconda.html).
+### **1. Installation**
 
-3. **Ultralytics YOLOv8**
-   - YOLOv8 is developed by Ultralytics. You can install it directly from PyPI using pip.
-   ```bash
-   pip install ultralytics
-   ```
-
-4. **GPU support (Optional but recommended)**
-   - For training, a machine with an Nvidia GPU and CUDA installed is recommended for better performance.
-
-### **Project Setup**
-
-1. **Clone the Repository**
-   Clone this repository to your local machine:
-   ```bash
-   git clone https://github.com/yourusername/fire-smoke-detection-yolo.git
-   cd fire-smoke-detection-yolo
-   ```
-
-2. **Prepare the Dataset**
-   - The dataset should be in YOLO format with images and labels in `data/images/` and `data/labels/`.
-   - Ensure your `data.yaml` file is correctly configured with the number of classes (`nc`) and the paths to your training and validation images:
-     ```yaml
-     train: ./train  # Training images folder
-     val: ./val      # Validation images folder
-     test: ./test      # test images folder
-
-     nc: 6  # number of classes
-     names: ['fire', 'smoke', 'person', 'lake', 'vehicles', 'building']
+#### **Step 1: Install the Required Python Libraries**
+1. Install PyTorch:
+   - If you are using a machine with a GPU:
+     ```bash
+     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+     ```
+   - If you are using a machine without a GPU:
+     ```bash
+     pip install torch torchvision torchaudio
      ```
 
-3. **Create and Activate a Conda Environment**
-   If you're using Conda, create a virtual environment:
-   ```bash
-   conda create -n yolov8_env python=3.8
-   conda activate yolov8_env
-   ```
-
-4. **Install Dependencies**
-   Install the required Python packages, including Ultralytics YOLOv8:
+2. Install the Ultralytics YOLO library:
    ```bash
    pip install ultralytics
    ```
 
-5. **Run YOLOv8 Training**
-   Run the YOLOv8 model for training on the dataset:
-   ```bash
-   yolo task=detect mode=train model=yolov8n.pt data=data.yaml epochs=100 imgsz=640
-   ```
+#### **Step 2: Set Up the Dataset**
+Place your dataset in a directory on your local machine. Ensure that the folder structure looks like this:
 
-   This will start training on your local machine. Results, including trained weights, will be saved in the `runs/train/` directory.
-
-### **Inference**
-Once training is complete, you can use the trained model to run inference on new images:
-```bash
-yolo task=detect mode=predict model=runs/train/weights/best.pt source=/path/to/images
+```
+firemandataset/
+├── train/
+├── val/
+├── test/
+└── data.yaml
 ```
 
+### **2. Training the YOLOv8 Model**
+
+#### **Step 1: Python Script for Training**
+You can use the following Python script to train the YOLOv9 model on your local machine. Update the paths to match your local directory structure:
+
+```python
+import os
+import torch
+from ultralytics import YOLO
+
+# Set up directory paths
+base_path = r'.\firemandataset'
+train_path = os.path.join(base_path, 'train')
+test_path = os.path.join(base_path, 'test')
+val_path = os.path.join(base_path, 'val')
+config_path = os.path.join(base_path, 'data.yaml')
+
+# Write configuration to the YAML file
+with open(config_path, "w") as f:
+    f.write(f"train: {train_path}\n")
+    f.write(f"val: {val_path}\n")
+    f.write(f"test: {test_path}\n")
+    f.write("nc: 6\n")  # Number of classes in the dataset
+    f.write("names: ['fire', 'smoke', 'person', 'lake', 'vehicle','building']\n")  # Class names
+
+# Initialize the YOLO model
+model = YOLO('yolov8n.pt')
+
+# Check for GPU availability and set device
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+model.to(device)
+
+# Train the model
+results = model.train(
+    data=config_path,
+    epochs=100,  # Number of epochs
+    imgsz=1024,  # Image size
+    plots=True,
+    patience=10,  # Early stopping patience
+)
+```
+
+#### **Step 2: Running the Code**
+1. Save the Python script as `train_yolov8.py`.
+2. Run the script from your terminal or command prompt:
+    ```bash
+    python train_yolov8.py
+    ```
+
+### **3. Understanding the Script**
+- **base_path**: This is the location where your dataset is stored. Make sure to update it with the correct path to your dataset.
+- **model = YOLO('yolov8n.pt')**: This line loads the YOLOv8 model pre-trained weights.
+- **epochs**: This parameter specifies how many times the model will train over the entire dataset.
+- **imgsz**: Defines the image resolution. You can increase or decrease it based on your machine's capabilities.
 ---
 
 ## **Part 2: Running the Project on Lehmus (HPC Cluster)**
