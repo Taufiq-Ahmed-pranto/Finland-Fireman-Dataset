@@ -33,11 +33,11 @@ To run this project locally, you will need the following:
 
 #### **Step 1: Install the Required Python Libraries**
 1. Install PyTorch:
-   - If you are using a machine with a GPU:
+     If you are using a machine with a GPU:
      ```bash
      pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
      ```
-   - If you are using a machine without a GPU:
+    If you are using a machine without a GPU:
      ```bash
      pip install torch torchvision torchaudio
      ```
