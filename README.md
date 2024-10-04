@@ -6,6 +6,24 @@ This project aims to develop a robust fire, smoke, person, lake, vehicles, and b
 This project can be run on your local machine for testing purposes or scaled to a high-performance computing (HPC) environment like **Lehmus** for training with larger datasets and faster performance.
 
 ---
+Got it! If the dataset is associated with a paper and has a publicly accessible link (or a reference to a paper with a DOI), we can include that in the **Accessing Dataset** section.
+
+Here’s how you can modify that part of the document to reference the dataset and the related paper:
+
+---
+
+## **Accessing the Dataset**
+
+The dataset used in this project is derived from the **Finland Fireman Project**, which focuses on fire incident and rescue operation data. This dataset is part of ongoing research and is associated with a published paper, which provides further details on the data collection and annotation processes.
+
+You can access the paper and learn more about the dataset through the following link:  
+[**Finland Fireman Project Dataset - Paper Link**](<https://doi.org/10.5281/zenodo.13732947>).
+
+For research collaboration or if you'd like to contribute to the project, we encourage you to reach out. Since the dataset is not publicly available, you can send us an email at **taahamed23@student.oulu.fi** to request access, including details about your intended use or potential collaboration. Each request will be considered based on its relevance to ongoing research.
+
+---
+
+This structure provides transparency about the dataset's availability while pointing users to the related paper for more in-depth information. Be sure to replace the `<insert-link-to-paper-or-dataset>` with the actual URL or DOI to the dataset or paper.
 
 ## **Part 1: Running the Project on Your Local Machine**
 
