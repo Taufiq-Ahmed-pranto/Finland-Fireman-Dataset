@@ -51,9 +51,9 @@ Before running the project on your local machine, ensure you have the following 
    - The dataset should be in YOLO format with images and labels in `data/images/` and `data/labels/`.
    - Ensure your `data.yaml` file is correctly configured with the number of classes (`nc`) and the paths to your training and validation images:
      ```yaml
-     train: ./data/images/train  # Training images folder
-     val: ./data/images/val      # Validation images folder
-     test: ./data/images/test      # test images folder
+     train: ./train  # Training images folder
+     val: ./val      # Validation images folder
+     test: ./test      # test images folder
 
      nc: 6  # number of classes
      names: ['fire', 'smoke', 'person', 'lake', 'vehicles', 'building']
