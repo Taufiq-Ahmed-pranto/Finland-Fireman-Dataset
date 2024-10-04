@@ -1,7 +1,7 @@
 # Finland-Fireman-Dataset
 
 ## **Introduction**
-This project aims to develop a robust fire, smoke, person, lake, vehicles, and building detection system using the YOLOv8 (You Only Look Once) object detection model. The model is trained on the **Finland Fireman Project Dataset**, which includes annotated images featuring fire incidents, rescue operations, and various environmental scenarios. The goal is to leverage this dataset to create an efficient detection system that can identify critical objects in emergency situations, particularly for fire and smoke detection.
+This project aims to develop a robust fire, smoke, person, lake, vehicles, and building detection system using the YOLOv8 (You Only Look Once) object detection model. The model is trained on the **Finland Fireman Project Dataset**, which includes annotated images featuring fire incidents, rescue operations, and various environmental scenarios. The goal is to leverage this dataset to create an efficient detection system that can identify critical objects in emergency situations. This project will also try to encounter class imblance issue for object detection and how we can make a robust object detection system for edge device.
 
 This project can be run on your local machine for testing purposes or scaled to a high-performance computing (HPC) environment like **Lehmus** for training with larger datasets and faster performance.
 
