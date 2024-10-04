@@ -91,7 +91,7 @@ yolo task=detect mode=predict model=runs/train/weights/best.pt source=/path/to/i
 ## **Part 2: Running the Project on Lehmus (HPC Cluster)**
 
 ### **Step-by-Step Instructions for Lehmus**
-
+If you have access of Lehmus you can run this but before that you have increased the size of Lehmus drive from 10 GB to minimum 100 GB. If can do it by sending a mail to ICT Oulu.
 1. **Access Lehmus**
    First, connect to the Lehmus HPC system. Use `ssh` to login:
    ```bash
