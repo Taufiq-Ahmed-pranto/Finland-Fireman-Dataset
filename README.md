@@ -42,6 +42,7 @@ Before running the project on your local machine, ensure you have the following 
      ```yaml
      train: ./data/images/train  # Training images folder
      val: ./data/images/val      # Validation images folder
+     val: ./data/images/test      # test images folder
 
      nc: 6  # number of classes
      names: ['fire', 'smoke', 'person', 'lake', 'vehicles', 'building']
